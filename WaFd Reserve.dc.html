@@ -88,17 +88,17 @@
       <a href="#rooms" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Reserve Rooms</a>
     </div>
     <a class="nav-cta" href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;white-space:nowrap;" style-hover="background:var(--bronze);">Request Introduction</a>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('open');"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#experience" onclick="document.getElementById('mobileMenu').classList.remove('open');">Experience</a>
-    <a href="#card" onclick="document.getElementById('mobileMenu').classList.remove('open');">The Card</a>
-    <a href="#intelligence" onclick="document.getElementById('mobileMenu').classList.remove('open');">Wealth Intelligence</a>
-    <a href="#banker" onclick="document.getElementById('mobileMenu').classList.remove('open');">Your Banker</a>
-    <a href="#rooms" onclick="document.getElementById('mobileMenu').classList.remove('open');">Reserve Rooms</a>
-    <a class="mobile-cta" href="#request" onclick="document.getElementById('mobileMenu').classList.remove('open');">Request an Introduction</a>
+    <a href="#experience">Experience</a>
+    <a href="#card">The Card</a>
+    <a href="#intelligence">Wealth Intelligence</a>
+    <a href="#banker">Your Banker</a>
+    <a href="#rooms">Reserve Rooms</a>
+    <a class="mobile-cta" href="#request">Request an Introduction</a>
   </div>
 
   <span id="top"></span>
@@ -608,6 +608,8 @@ class Component extends DCLogic {
     this._initReveal();
     this._initSpace();
     this._applyCards();
+    this._initHamburger();
+    this._initPasswordGate();
     this._timer = setInterval(() => {
       if (!this._paused) this.setState(s => ({ slide: (s.slide + 1) % this._cards.length }));
     }, 4200);
@@ -623,6 +625,82 @@ class Component extends DCLogic {
   }
 
   _pick(i){ this.setState({ slide: i }); this._paused = true; clearTimeout(this._resume); this._resume = setTimeout(()=>{ this._paused = false; }, 9000); }
+
+  _initHamburger() {
+    const btn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      // Animate hamburger to X
+      const spans = btn.querySelectorAll('span');
+      if (isOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+        document.body.style.overflow = 'hidden';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+    // Close menu on link click
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        const spans = btn.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  _initPasswordGate() {
+    const PASS = 'wafdreserve2026';
+    const STORAGE_KEY = 'wafd_reserve_auth';
+    if (sessionStorage.getItem(STORAGE_KEY) === 'true') return;
+    // Create gate overlay
+    const gate = document.createElement('div');
+    gate.id = 'passwordGate';
+    gate.style.cssText = 'position:fixed;inset:0;z-index:100000;background:var(--pine,#0F3022);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;';
+    gate.innerHTML = `
+      <div style="text-align:center;max-width:380px;width:100%;">
+        <div style="font-family:'Cormorant',serif;font-size:32px;color:#EFE9DD;margin-bottom:8px;">WaFd Reserve</div>
+        <p style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(239,233,221,0.6);margin:0 0 32px;">Enter password to continue</p>
+        <input id="gateInput" type="password" placeholder="Password" style="width:100%;padding:14px 18px;border:1px solid rgba(239,233,221,0.2);background:rgba(239,233,221,0.06);color:#EFE9DD;font-size:15px;font-family:'Hanken Grotesk',sans-serif;border-radius:2px;outline:none;margin-bottom:16px;">
+        <button id="gateBtn" style="width:100%;padding:14px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:#0F3022;background:#EFE9DD;border:none;border-radius:2px;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;">Enter</button>
+        <p id="gateError" style="margin:14px 0 0;font-size:13px;color:#c0392b;display:none;">Incorrect password</p>
+      </div>
+    `;
+    document.body.appendChild(gate);
+    document.body.style.overflow = 'hidden';
+    const input = document.getElementById('gateInput');
+    const btn = document.getElementById('gateBtn');
+    const error = document.getElementById('gateError');
+    const attempt = () => {
+      if (input.value === PASS) {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+        gate.style.opacity = '0';
+        gate.style.transition = 'opacity .4s ease';
+        document.body.style.overflow = '';
+        setTimeout(() => gate.remove(), 400);
+      } else {
+        error.style.display = 'block';
+        input.style.borderColor = '#c0392b';
+        input.value = '';
+        input.focus();
+      }
+    };
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') attempt(); });
+    input.focus();
+  }
 
   _applyCards() { const n = this._cards.length; for (let i=0;i<n;i++){ const el=document.getElementById('lc'+i); if(el) el.style.opacity=(i===this.state.slide)?'1':'0'; const th=document.getElementById('th'+i); if(th){ const on=i===this.state.slide; th.style.border=on?'2px solid var(--bronze)':'1px solid rgba(11,61,36,0.16)'; th.style.opacity=on?'1':'0.62'; } } }
 
