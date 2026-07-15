@@ -27,9 +27,31 @@
   img{max-width:100%;display:block}
   .num{font-family:'Cormorant',serif;font-feature-settings:"lnum" 1,"tnum" 1;}
   @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  /* Mobile menu */
+  .nav-links{display:flex;align-items:center;gap:clamp(16px,3vw,38px);}
+  .nav-cta{display:inline-block;}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex:none;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--pine);margin:5px 0;border-radius:1px;transition:transform .3s ease,opacity .3s ease;}
+  .mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--bone);padding:100px 32px 48px;flex-direction:column;align-items:flex-start;gap:28px;overflow-y:auto;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:16px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:var(--pine);}
+  .mobile-menu .mobile-cta{margin-top:auto;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:16px 32px;border-radius:2px;display:inline-block;}
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none!important;}
+    .hamburger{display:block!important;}
+  }
   @media(max-width:900px){
     .hero-phone{display:none!important;}
     .hero-text{max-width:100%!important;min-width:0!important;}
+  }
+  @media(max-width:768px){
+    .grid-2col{grid-template-columns:1fr!important;}
+    .grid-3col{grid-template-columns:1fr!important;}
+    .grid-3col > *{padding-left:0!important;padding-right:0!important;border-left:none!important;}
+    .grid-4col{grid-template-columns:1fr 1fr!important;}
+    .rooms-grid{grid-template-columns:1fr!important;}
+    .footer-bottom{flex-direction:column!important;align-items:flex-start!important;}
+    .footer-links{flex-direction:column!important;gap:16px!important;}
   }
 </style>
 <meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" data-resource-id="cardBot">
@@ -58,15 +80,26 @@
     <a href="#top" style="display:inline-flex;align-items:center;">
       <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098542/wafd-reserve/logo-linear-green.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
     </a>
-    <div style="display:flex;align-items:center;gap:clamp(16px,3vw,38px);">
+    <div class="nav-links">
       <a href="#experience" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Experience</a>
             <a href="#card" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;"> Card</a>
       <a href="#intelligence" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Wealth Intelligence</a>
       <a href="#banker" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Your Banker</a>
       <a href="#rooms" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Reserve Rooms</a>
     </div>
-    <a href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;white-space:nowrap;" style-hover="background:var(--bronze);">Request Introduction</a>
+    <a class="nav-cta" href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;white-space:nowrap;" style-hover="background:var(--bronze);">Request Introduction</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('open');"><span></span><span></span><span></span></button>
   </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#experience" onclick="document.getElementById('mobileMenu').classList.remove('open');">Experience</a>
+    <a href="#card" onclick="document.getElementById('mobileMenu').classList.remove('open');">The Card</a>
+    <a href="#intelligence" onclick="document.getElementById('mobileMenu').classList.remove('open');">Wealth Intelligence</a>
+    <a href="#banker" onclick="document.getElementById('mobileMenu').classList.remove('open');">Your Banker</a>
+    <a href="#rooms" onclick="document.getElementById('mobileMenu').classList.remove('open');">Reserve Rooms</a>
+    <a class="mobile-cta" href="#request" onclick="document.getElementById('mobileMenu').classList.remove('open');">Request an Introduction</a>
+  </div>
 
   <span id="top"></span>
 
@@ -192,7 +225,7 @@
       <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--pine);margin:0;text-wrap:balance;">Your financial life, held together.</h2>
       <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--ink);">Your personal deposits, business accounts, lending, available credit and connected external relationships, brought into one clear experience. You understand where you stand, and your Reserve banker sees the same complete picture.</p>
 
-      <div style="display:grid;grid-template-columns:0.82fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
+      <div class="grid-2col" style="display:grid;grid-template-columns:0.82fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
         <div data-reveal="" style="position:relative;">
           <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098561/wafd-reserve/phone-dashboard.png" alt="WaFd Reserve mobile app showing the total relationship balance and account summary" style="width:100%;max-width:400px;border-radius:24px;box-shadow:0 54px 100px -38px rgba(33, 27, 6, 0);">
         </div>
@@ -239,7 +272,7 @@
       <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">A card designed to feel as distinctive as the relationship.</h2>
       <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">A personalized metal card with fine botanical line artwork etched into the surface. Every season, we partner with a local Pacific Northwest artist to reimagine it.</p>
 
-      <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:clamp(50px,8vh,88px);">
+      <div class="grid-2col" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:clamp(50px,8vh,88px);">
         <div data-reveal="" style="position:relative;width:100%;aspect-ratio:3/2;border-radius:12px;overflow:hidden;box-shadow:0 40px 78px -34px rgba(11,61,36,0);border:1px solid rgba(11,61,36,0.1);background:var(--bone-2);">
           <img id="lc0" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098556/wafd-reserve/card-inkgreen.png" alt="The Reserve Card, Estuary edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:1;">
           <img id="lc1" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" alt="The Reserve Card, Sword Fern edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
@@ -332,7 +365,7 @@
       <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">Make liquidity productive without making it complicated.</h2>
       <p data-reveal="" data-delay="120" style="margin:28px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">Reserve helps you organize operating cash, personal reserves and short-term liquidity, with insured cash sweep options and guidance from a banker who understands your full financial picture.</p>
 
-      <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
+      <div class="grid-2col" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
         <!-- Summary panel -->
         <div data-reveal="" style="background:var(--bone-2);border:1px solid rgba(11,61,36,0.1);border-radius:12px;padding:clamp(32px,4vw,48px);">
           <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;margin-bottom:8px;">Available liquidity</span>
@@ -403,7 +436,7 @@
     </figure>
 
     <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(48px,7vh,72px);">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:clamp(50px,7vh,84px);border-top:1px solid rgba(11,61,36,0.2);">
+      <div class="grid-3col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:clamp(50px,7vh,84px);border-top:1px solid rgba(11,61,36,0.2);">
         <div data-reveal="" style="padding:34px 32px 34px 0;">
           <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">One complete view</span>
           <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Your personal banking, business banking, lending and service activity brought together in one place.</p>
@@ -441,7 +474,7 @@
     <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;opacity:0.15;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(176,130,79,0.3),transparent 60%);"></div>
 
     <div style="position:relative;z-index:2;max-width:100%;margin:0 auto;padding:clamp(100px,15vh,200px) 50px clamp(100px,15vh,200px) clamp(20px,5vw,64px);">
-      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(40px,6vw,80px);align-items:center;max-width:1600px;margin:0 auto;">
+      <div class="rooms-grid" style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(40px,6vw,80px);align-items:center;max-width:1600px;margin:0 auto;">
         <div style="max-width:56ch;">
           <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
             
@@ -495,7 +528,7 @@
       <!-- Four-step journey with connecting line -->
       <div style="position:relative;margin-top:clamp(50px,7vh,90px);">
         <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--bronze);opacity:0.4;"></div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;">
+        <div class="grid-4col" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;">
           <div data-reveal="" style="padding:36px 28px 36px 0;border-top:2px solid var(--pine);">
             <span class="num" style="font-size:clamp(40px,4.5vw,56px);color:var(--bronze);line-height:1;display:block;">01</span>
             <span style="display:block;margin:18px 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Invitation</span>
@@ -535,11 +568,11 @@
         <a href="#top" style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(239,233,221,0.7);border-bottom:1px solid rgba(239,233,221,0.3);padding-bottom:2px;" style-hover="color:var(--bronze);">Speak with a Reserve banker</a>
       </div>
 
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:clamp(70px,11vh,140px);padding-top:32px;border-top:1px solid rgba(239,233,221,0.16);">
+      <div class="footer-bottom" style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:clamp(70px,11vh,140px);padding-top:32px;border-top:1px solid rgba(239,233,221,0.16);">
         <span style="display:inline-flex;align-items:center;">
           <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098573/wafd-reserve/logo-linear-light.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
         </span>
-        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+        <div class="footer-links" style="display:flex;gap:28px;flex-wrap:wrap;">
           <a href="#experience" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Experience</a>
           <a href="#intelligence" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Wealth Intelligence</a>
           <a href="#banker" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Your Banker</a>
