@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#EFE9DD; --bone-2:#F4EFE4; --linen:#E7DECD;
+    --pine:#0B3D24; --pine-2:#082E1B; --bronze:#B0824F; --ink:#241F1C;
+    --s02-bg:linear-gradient(180deg,#0B3D24 0%,#082E1B 100%);
+    --s02-head:#EFE9DD; --s02-body:rgba(239,233,221,0.72); --s02-line:rgba(239,233,221,0.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bone);color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:var(--bronze);color:var(--bone);}
+  a{color:var(--pine);text-decoration:none;transition:color .25s ease;}
+  a:hover{color:var(--bronze);}
+  img{max-width:100%;display:block}
+  .num{font-family:'Cormorant',serif;font-feature-settings:"lnum" 1,"tnum" 1;}
+  @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+</style>
+<meta name="ext-resource-dependency" content="assets/wafd-mark.png" data-resource-id="mark">
+<meta name="ext-resource-dependency" content="assets/wafd-card-botanical.png" data-resource-id="cardBot">
+<meta name="ext-resource-dependency" content="assets/wafd-card-wildflowers.png" data-resource-id="cardWild">
+<meta name="ext-resource-dependency" content="assets/wafd-card-ink.png" data-resource-id="cardInk">
+<meta name="ext-resource-dependency" content="assets/wafd-card-inkgreen.png" data-resource-id="cardGreen">
+<template id="__bundler_thumbnail" data-bg-color="#0B3D24">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0B3D24"></rect>
+    <text x="600" y="392" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="150" font-weight="700" fill="#EFE9DD">WaFd</text>
+    <text x="600" y="486" text-anchor="middle" font-family="Cormorant, Georgia, serif" font-size="70" font-weight="500" letter-spacing="34" fill="#B0824F">RESERVE</text>
+  </svg>
+</template>
+</helmet>
+
+<div style="position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.05;mix-blend-mode:multiply;background-image:url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+<div style="position:relative;overflow-x:hidden">
+
+  <div id="glow" aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity 1s ease;mix-blend-mode:multiply;background:radial-gradient(340px 340px at var(--mx,50%) var(--my,50%),rgba(176,130,79,0.13),transparent 70%);"></div>
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,5vw,64px);background:rgba(239,233,221,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,61,36,0.12);">
+    <a href="#top" style="display:inline-flex;align-items:center;">
+      <img src="logo/WaFd Reserve Logo Linear-green.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(16px,3vw,38px);">
+      <a href="#tier" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Tier</a>
+      <a href="#platform" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Platform</a>
+      <a href="#banker" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Your Relationship Manager</a>
+      <a href="#card" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Card</a>
+    </div>
+    <a href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;" style-hover="background:var(--bronze);">Request an introduction</a>
+  </nav>
+
+  <span id="top"></span>
+
+  <!-- ===================== HERO ===================== -->
+  <section style="animation:heroIn .85s cubic-bezier(.2,.7,.2,1) both;background:var(--pine);position:relative;overflow:hidden;min-height:calc(100vh - 64px);display:flex;align-items:center;">
+    <img src="assets/wafd-app.png" alt="The WaFd Reserve mobile app showing a client's total relationship balance and accounts in serif numerals, with the line Your relationship manager, Elena Marsh" style="position:absolute;z-index:1;right:max(-64px,-4vw);bottom:-9%;width:clamp(320px,44vw,620px);border-radius:26px;box-shadow:0 60px 120px -44px rgba(0,0,0,0.6);">
+    <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;padding:clamp(72px,10vh,120px) clamp(20px,5vw,64px);">
+      <div style="max-width:62%;min-width:min(100%,520px);">
+        <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:clamp(30px,4.5vh,46px);">
+          <span style="width:34px;height:1px;background:var(--bronze);"></span>
+          <span style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Private banking by WaFd Bank</span>
+        </div>
+        <h1 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(56px,8.5vw,124px);line-height:0.98;letter-spacing:-0.02em;color:var(--bone);margin:0;max-width:15ch;text-wrap:balance;">Everyone who touches your money<br>should <em style="font-style:italic;color:var(--bronze);">already</em> know your name.</h1>
+        <p style="margin:clamp(30px,4.5vh,44px) 0 0;max-width:56ch;font-size:clamp(16px,1.4vw,19px);line-height:1.65;color:rgba(239,233,221,0.72);">Private banking by WaFd Bank. Your whole relationship, held by one person, on one platform, in real time. By invitation, for the clients we value most.</p>
+        <div style="margin-top:clamp(32px,5vh,48px);">
+          <a href="#request" style="display:inline-block;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--bronze);padding:16px 34px;border-radius:2px;" style-hover="background:var(--bone);color:var(--pine);">Request an introduction</a>
+          <div style="margin-top:26px;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(239,233,221,0.65);">Member FDIC · Est. 1917</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 · WHO IT'S FOR ===================== -->
+  <section id="who" style="background:var(--s02-bg);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:30px;">
+        <span class="num" style="font-size:17px;color:var(--bronze);">02</span>
+        <span style="width:22px;height:1px;background:var(--bronze);"></span>
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:var(--s02-body);">Who it's for</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,72px);line-height:1.02;letter-spacing:-0.015em;color:var(--s02-head);margin:0;max-width:15ch;text-wrap:balance;">Built for generational builders.</h2>
+      <p data-reveal="" data-delay="120" style="margin:30px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--s02-body);">Founders, executives, physicians, and technology and aerospace professionals in their prime, with businesses to grow and families to provide for.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:clamp(50px,7vh,90px);border-top:1px solid var(--s02-line);">
+        <div data-reveal="" style="padding:34px 30px 34px 0;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(28px,3vw,38px);color:var(--s02-head);display:block;margin-bottom:14px;">Builders</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--s02-body);">You built it. We bank the whole arc, not a single quarter.</p>
+        </div>
+        <div data-reveal="" data-delay="100" style="padding:34px 30px;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(28px,3vw,38px);color:var(--s02-head);display:block;margin-bottom:14px;">Professionals</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--s02-body);">Your time is the scarce asset. Banking that respects it.</p>
+        </div>
+        <div data-reveal="" data-delay="200" style="padding:34px 0 34px 30px;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(28px,3vw,38px);color:var(--s02-head);display:block;margin-bottom:14px;">Families</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--s02-body);">Quiet stewardship for what took decades to make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 · THE TIER ===================== -->
+  <section id="tier" style="background:var(--bone);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px) clamp(52px,7vh,84px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span class="num" style="font-size:17px;color:var(--bronze);">03</span>
+        <span style="width:22px;height:1px;background:var(--bronze);"></span>
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The tier</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">The elevated tier of a bank founded in 1917.</h2>
+      <p data-reveal="" data-delay="120" style="margin:28px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">Reserve is not a new venture. It is the private banking tier of WaFd Bank: the elevated experience above Select Banking, alongside WaFd Wealth. A century of stability, made personal.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;margin-top:clamp(50px,7vh,90px);">
+        <div data-reveal="" style="padding:34px 34px 34px 0;border-top:1px solid rgba(11,61,36,0.24);">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;">Select Banking</span>
+          <p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Everyday relationship banking for valued WaFd clients.</p>
+        </div>
+        <div data-reveal="" data-delay="120" style="padding:34px;border-top:2px solid var(--pine);background:var(--bone-2);">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--pine);font-weight:700;">Reserve</span>
+          <p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:var(--ink);">The private banking tier. Invitation-based, qualified by your relationship with WaFd. A dedicated relationship manager and one platform for everything.</p>
+        </div>
+        <div data-reveal="" data-delay="240" style="padding:34px 0 34px 34px;border-top:1px solid rgba(11,61,36,0.24);">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;">WaFd Wealth</span>
+          <p style="margin:16px 0 0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Personalized wealth guidance for what's next, alongside your Reserve relationship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 04 · THE PLATFORM ===================== -->
+  
+
+  <!-- ===================== 05 · YOUR RELATIONSHIP MANAGER ===================== -->
+  <section id="platform" style="background:var(--bone);">
+    
+  <div style="max-width: 1180px; margin: 0 auto; padding: clamp(52px,7vh,84px) clamp(20px,5vw,64px) clamp(94px,14vh,180px); position: relative">
+      <div aria-hidden="true" style="max-width:1180px;margin:0 auto clamp(46px,6vh,72px);height:1px;background:rgba(11,61,36,0.12);"></div>
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:22px;"><span class="num" style="font-size:16px;color:var(--bronze);">04</span><span style="width:22px;height:1px;background:var(--bronze);"></span><span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The platform</span></div>
+
+      <h2 data-reveal="" style="font-family: 'Cormorant',serif; font-weight: 500; font-size: clamp(40px,5.6vw,72px); line-height: 1.0; letter-spacing: -0.015em; color: var(--pine); margin: 0; text-wrap: balance; margin-top: 12px">Everything, in one view.</h2><p data-reveal="" data-delay="120" style="margin: 26px auto 0; max-width: 56ch; font-size: clamp(16px,1.5vw,20px); line-height: 1.6; color: var(--ink); width: 726px; height: 94px; margin-left: 5px">Deposits, lending, credit and activity. One relationship, one platform, in real time. No stitched screens, no waiting on a callback to find out where you stand.</p><div style="display:grid;grid-template-columns:0.82fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
+        <div data-reveal="" style="position:relative;">
+          
+          <img src="assets/wafd-app.png" alt="The WaFd Reserve mobile app showing the total relationship balance and accounts in serif numerals, with the line Your relationship manager, Elena Marsh" style="position: relative; width: 387px; border-radius: 24px; box-shadow: 0 54px 100px -38px rgba(11,61,36,0.55); height: 732px">
+        </div>
+
+        <div data-reveal="" data-delay="120">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3vw,40px) clamp(28px,4vw,52px);">
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Total relationship balance</span><div class="num" style="font-weight:500;font-size:clamp(40px,4.4vw,60px);line-height:0.98;color:var(--pine);margin-top:8px;letter-spacing:-0.01em;">$2,480,500</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Deposits</span><div class="num" style="font-weight:500;font-size:clamp(32px,3.2vw,44px);line-height:1;color:var(--pine);margin-top:8px;">$1,982,200</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Lending</span><div class="num" style="font-weight:500;font-size:clamp(32px,3.2vw,44px);line-height:1;color:var(--pine);margin-top:8px;">$542,300</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Available credit</span><div class="num" style="font-weight:500;font-size:clamp(32px,3.2vw,44px);line-height:1;color:var(--pine);margin-top:8px;">$357,700</div></div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:16px;margin:clamp(30px,4vh,44px) 0 clamp(30px,4vh,44px);">
+            <span style="flex:1;height:1px;background:var(--bronze);opacity:0.55;"></span>
+            <span style="display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--pine);font-weight:600;flex:none;"><span style="width:8px;height:8px;border-radius:50%;background:#2f8f5b;box-shadow:0 0 0 3px rgba(47,143,91,0.18);"></span>Updated in real time</span>
+          </div>
+
+          <div style="border-top:1px solid rgba(11,61,36,0.2);">
+            <div style="padding:26px 0;border-bottom:1px solid rgba(11,61,36,0.12);">
+              <span style="font-family:'Cormorant',serif;font-size:24px;color:var(--pine);display:block;margin-bottom:8px;">Real time, not overnight</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Balances, transfers and activity settle as they happen. What you see is what is true, right now.</p>
+            </div>
+            <div style="padding:26px 0;border-bottom:1px solid rgba(11,61,36,0.12);">
+              <span style="font-family:'Cormorant',serif;font-size:24px;color:var(--pine);display:block;margin-bottom:8px;">One relationship, not five logins</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Personal, business, lending and credit, held together in a single view.</p>
+            </div>
+            <div style="padding:26px 0;">
+              <span style="font-family:'Cormorant',serif;font-size:24px;color:var(--pine);display:block;margin-bottom:8px;">Built on one platform</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">The same platform that runs the bank, tuned for Reserve. Nothing bolted on.</p>
+            </div>
+          </div>
+          <p style="margin:clamp(30px,4vh,48px) 0 0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,31,28,0.5);">Member FDIC. WaFd Bank, est. 1917.</p>
+        </div>
+      </div>
+    <div style="position: absolute; inset: -8% -10% -10% -10%; background: radial-gradient(58% 52% at 50% 40%,rgba(176,130,79,0.24),transparent 72%); width: 506px; height: 802px; left: 17px; top: 457px"></div></div></section>
+
+  <!-- ===================== 06 · ACCESS ===================== -->
+  <section id="banker" style="background:var(--linen);">
+    
+      
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(94px,14vh,180px) clamp(20px,5vw,64px) 0;">
+        <div data-reveal="" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:22px;">
+          <span class="num" style="font-size:16px;color:var(--bronze);">05</span>
+          <span style="width:22px;height:1px;background:var(--bronze);"></span>
+          <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">Your relationship manager</span>
+        </div>
+        <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--pine);margin:0;text-wrap:balance;">They see exactly what you see.</h2>
+        <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--ink);">When you call, your relationship manager is already looking at the same screen you are. Your whole picture, current, in front of them. No re-explaining. No being handed around. You are known, not processed.</p>
+      </div>
+    
+
+    <figure data-reveal="" data-delay="120" style="max-width:1440px;margin:clamp(50px,8vh,90px) auto 0;padding:0 clamp(20px,4vw,52px);">
+      <div style="border-radius:14px;overflow:hidden;box-shadow:0 70px 130px -46px rgba(11,61,36,0.5);border:1px solid rgba(11,61,36,0.12);">
+        
+      <img src="assets/wafd-rm.png" alt="The WaFd Reserve relationship manager desktop, Elena Marsh's view of a client's full relationship: deposits, lending, activity and relationship summary, updating in real time" style="width: 100%; display: block; padding-top: 0px"></div>
+    </figure>
+
+    <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(94px,14vh,180px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:clamp(50px,7vh,84px);border-top:1px solid rgba(11,61,36,0.2);">
+        <div data-reveal="" style="padding:34px 32px 34px 0;">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">One relationship</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Every account, held together. Not scattered across departments.</p>
+        </div>
+        <div data-reveal="" data-delay="100" style="padding:34px 32px;border-left:1px solid rgba(11,61,36,0.14);">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">One view</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">You and your relationship manager read the same screen, at the same moment.</p>
+        </div>
+        <div data-reveal="" data-delay="200" style="padding:34px 0 34px 32px;border-left:1px solid rgba(11,61,36,0.14);">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">One person</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">A dedicated relationship manager who knows your name, your history, and what you are building next.</p>
+        </div>
+      </div>
+
+      <blockquote data-reveal="" style="margin:clamp(64px,10vh,120px) 0 clamp(28px,4vh,40px);text-align:center;">
+        <p style="font-family:'Cormorant',serif;font-weight:500;font-style:italic;font-size:clamp(20px,3vw,40px);line-height:1.12;color:var(--pine);margin:0;white-space:nowrap;">“The person who answers already knows your whole picture.”</p>
+      </blockquote>
+      <p data-reveal="" style="margin:0 auto;max-width:60ch;text-align:center;font-size:14px;line-height:1.65;color:rgba(36,31,28,0.6);">Your relationship manager also connects you to WaFd Wealth when the moment calls for it. One roof, one relationship.</p>
+
+      
+    </div>
+  </section><section id="access" style="background:var(--bone);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span class="num" style="font-size:17px;color:var(--bronze);">06</span>
+        <span style="width:22px;height:1px;background:var(--bronze);"></span>
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">Access</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:16ch;text-wrap:balance;">By invitation, then a conversation.</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;margin-top:clamp(50px,7vh,90px);">
+        <div data-reveal="" style="padding:36px 34px 36px 0;border-top:1px solid var(--pine);">
+          <span class="num" style="font-size:clamp(44px,5vw,64px);color:var(--bronze);line-height:1;display:block;">01</span>
+          <span style="display:block;margin:20px 0 12px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Invitation</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">Clients are invited into Reserve based on their relationship with WaFd Bank.</p>
+        </div>
+        <div data-reveal="" data-delay="120" style="padding:36px 34px;border-top:1px solid var(--pine);">
+          <span class="num" style="font-size:clamp(44px,5vw,64px);color:var(--bronze);line-height:1;display:block;">02</span>
+          <span style="display:block;margin:20px 0 12px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Introduction</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">You meet your dedicated relationship manager, the one person who will know your whole picture.</p>
+        </div>
+        <div data-reveal="" data-delay="240" style="padding:36px 0 36px 34px;border-top:1px solid var(--pine);">
+          <span class="num" style="font-size:clamp(44px,5vw,64px);color:var(--bronze);line-height:1;display:block;">03</span>
+          <span style="display:block;margin:20px 0 12px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Everything, in one view</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">Your entire relationship: deposits, lending and activity, on one platform, in real time.</p>
+        </div>
+      </div>
+      <p data-reveal="" style="margin:40px 0 0;font-size:13px;letter-spacing:0.04em;color:rgba(36,31,28,0.55);max-width:60ch;">Reserve is invitation-based and qualified by relationship balances with WaFd Bank.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 07 · THE RESERVE CARD ===================== -->
+  <section id="card" style="background:var(--bone);border-top:1px solid rgba(11,61,36,0.1);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(80px,11vh,140px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:22px;">
+        <span class="num" style="font-size:17px;color:var(--bronze);">07</span>
+        <span style="width:22px;height:1px;background:var(--bronze);"></span>
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The card</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,72px);line-height:1.02;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:16ch;text-wrap:balance;">The Reserve Card.</h2>
+      <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">A personalized metal card with fine botanical line artwork etched into the surface. Artwork, not insignia.</p>
+
+      <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:clamp(50px,8vh,88px);">
+        <div data-reveal="" style="position:relative;width:100%;aspect-ratio:3/2;border-radius:12px;overflow:hidden;box-shadow:0 40px 78px -34px rgba(11,61,36,0.45);border:1px solid rgba(11,61,36,0.1);background:var(--bone-2);">
+          <img id="lc0" src="assets/wafd-card-inkgreen.png" alt="The Reserve Card, estuary edition in Reserve Green" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:1;">
+          <img id="lc1" src="assets/wafd-card-botanical.png" alt="The Reserve Card, sword fern edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+          <img id="lc2" src="assets/wafd-card-wildflowers.png" alt="The Reserve Card, wildflower edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+          <img id="lc3" src="assets/wafd-card-ink.png" alt="The Reserve Card, tideline ink edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+        </div>
+        <div data-reveal="" data-delay="120">
+          <p style="margin:0;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--ink);">Each card is a canvas. Every season, we partner with a local Pacific Northwest artist to reimagine it.</p>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.4vw,16px);margin-top:clamp(24px,3.5vh,32px);">
+            <button id="th0" onClick="{{ go0 }}" aria-label="View the estuary card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:2px solid var(--bronze);opacity:1;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="assets/wafd-card-inkgreen.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th1" onClick="{{ go1 }}" aria-label="View the sword fern card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="assets/wafd-card-botanical.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th2" onClick="{{ go2 }}" aria-label="View the wildflower card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="assets/wafd-card-wildflowers.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th3" onClick="{{ go3 }}" aria-label="View the tideline card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="assets/wafd-card-ink.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:clamp(22px,3vh,28px);padding-top:18px;border-top:1px solid rgba(11,61,36,0.14);">
+            <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);line-height:1;">{{ cap.motif }}</span>
+            <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);flex:none;"></span>
+            <span style="font-size:12px;letter-spacing:0.02em;color:rgba(36,31,28,0.6);">{{ cap.artist }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER / REQUEST ===================== -->
+  <footer id="request" style="background:linear-gradient(180deg,var(--pine) 0%,var(--pine-2) 100%);color:var(--bone);border-top:1px solid rgba(239,233,221,0.14);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,14vh,180px) clamp(20px,5vw,64px) clamp(48px,7vh,80px);">
+      <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:30px;">
+        <span style="width:34px;height:1px;background:var(--bronze);"></span>
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:var(--bronze);">The last word</span>
+      </div>
+      <h2 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--bone);margin:0;max-width:16ch;text-wrap:balance;">One relationship. One person. One platform.</h2>
+      <div style="display:flex;align-items:center;gap:26px;margin-top:44px;flex-wrap:wrap;">
+        <a href="#top" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--pine);background:var(--bone);padding:16px 32px;border-radius:2px;" style-hover="background:var(--bronze);color:var(--bone);">Request an introduction</a>
+        <a href="#top" style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(239,233,221,0.7);border-bottom:1px solid rgba(239,233,221,0.3);padding-bottom:2px;" style-hover="color:var(--bronze);">Speak with a relationship manager</a>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:clamp(70px,11vh,140px);padding-top:32px;border-top:1px solid rgba(239,233,221,0.16);">
+        <span style="display:inline-flex;align-items:center;">
+          <img src="logo/WaFd Reserve Logo Linear-light.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
+        </span>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <a href="#tier" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Tier</a>
+          <a href="#platform" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Platform</a>
+          <a href="#banker" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Your Relationship Manager</a>
+          <a href="#card" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Card</a>
+        </div>
+      </div>
+      <p style="margin:26px 0 0;font-size:11px;letter-spacing:0.08em;color:rgba(239,233,221,0.5);">WaFd Reserve · Private banking by WaFd Bank · Member FDIC · Est. 1917</p>
+    </div>
+  </footer>
+
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#B0824F&quot;, &quot;options&quot;: [&quot;#B0824F&quot;, &quot;#0B3D24&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;}
+}">
+class Component extends DCLogic {
+  state = { slide: 0 };
+
+  _res(id, path) { const R = (typeof window !== 'undefined' && window.__resources) || {}; return R[id] || path; }
+  get _cards() {
+    return [
+      { src: this._res('cardGreen', 'assets/wafd-card-inkgreen.png'),    motif: 'Estuary',    artist: 'Maren Holt · ink on green, Tacoma' },
+      { src: this._res('cardBot',   'assets/wafd-card-botanical.png'),   motif: 'Sword Fern', artist: 'Eli Brandt · botanical line study, Olympia' },
+      { src: this._res('cardWild',  'assets/wafd-card-wildflowers.png'), motif: 'Wildflower', artist: 'Clara Whitfield · pressed-flower etching, Portland' },
+      { src: this._res('cardInk',   'assets/wafd-card-ink.png'),         motif: 'Tideline',   artist: 'Jun Park · sumi ink, Seattle' },
+    ];
+  }
+  _paused = false;
+
+  componentDidMount() {
+    if (this.props.accent) document.documentElement.style.setProperty('--bronze', this.props.accent);
+    this._initReveal();
+    this._initSpace();
+    this._applyCards();
+    this._timer = setInterval(() => {
+      if (!this._paused) this.setState(s => ({ slide: (s.slide + 1) % this._cards.length }));
+    }, 4200);
+  }
+
+  componentWillUnmount() { clearInterval(this._timer); clearTimeout(this._resume); }
+
+  componentDidUpdate(prev) {
+    if (prev.accent !== this.props.accent && this.props.accent) {
+      document.documentElement.style.setProperty('--bronze', this.props.accent);
+    }
+    this._applyCards();
+  }
+
+  _pick(i){ this.setState({ slide: i }); this._paused = true; clearTimeout(this._resume); this._resume = setTimeout(()=>{ this._paused = false; }, 9000); }
+
+  _applyCards() { const n = this._cards.length; for (let i=0;i<n;i++){ const el=document.getElementById('lc'+i); if(el) el.style.opacity=(i===this.state.slide)?'1':'0'; const th=document.getElementById('th'+i); if(th){ const on=i===this.state.slide; th.style.border=on?'2px solid var(--bronze)':'1px solid rgba(11,61,36,0.16)'; th.style.opacity=on?'1':'0.62'; } } }
+
+  _initSpace() {
+    const glow = document.getElementById('glow');
+    if (glow && window.matchMedia && window.matchMedia('(pointer:fine)').matches) {
+      let raf = 0, mx = 50, my = 50;
+      window.addEventListener('mousemove', (e) => {
+        mx = (e.clientX / window.innerWidth) * 100; my = (e.clientY / window.innerHeight) * 100;
+        if (!raf) raf = requestAnimationFrame(() => { glow.style.setProperty('--mx', mx + '%'); glow.style.setProperty('--my', my + '%'); glow.style.opacity = '1'; raf = 0; });
+      }, { passive: true });
+    }
+  }
+
+  _initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    const els = [...document.querySelectorAll('[data-reveal]')];
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1)';
+    });
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+        el.style.transitionDelay = (d / 1000) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  }
+
+  renderVals() {
+    const idx = this.state.slide;
+    const cards = this._cards;
+
+    return {
+      cap: cards[idx],
+      go0: () => this._pick(0),
+      go1: () => this._pick(1),
+      go2: () => this._pick(2),
+      go3: () => this._pick(3),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#EFE9DD; --bone-2:#F4EFE4; --linen:#E7DECD;
+    --pine:#0F3022; --pine-2:#0B2619; --bronze:#B0824F; --ink:#241F1C;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bone);color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  ::selection{background:var(--bronze);color:var(--bone);}
+  a{color:var(--pine);text-decoration:none;transition:color .25s ease;}
+  a:hover{color:var(--bronze);}
+  img{max-width:100%;display:block}
+  .num{font-family:'Cormorant',serif;font-feature-settings:"lnum" 1,"tnum" 1;}
+  @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+</style>
+<meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" data-resource-id="cardBot">
+<meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098584/wafd-reserve/card-wildflowers.png" data-resource-id="cardWild">
+<meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098580/wafd-reserve/card-ink.png" data-resource-id="cardInk">
+<meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098556/wafd-reserve/card-inkgreen.png" data-resource-id="cardGreen">
+<template id="__bundler_thumbnail" data-bg-color="#0F3022">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0F3022"></rect>
+    <text x="600" y="392" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="150" font-weight="700" fill="#EFE9DD">WaFd</text>
+    <text x="600" y="486" text-anchor="middle" font-family="Cormorant, Georgia, serif" font-size="70" font-weight="500" letter-spacing="34" fill="#B0824F">RESERVE</text>
+  </svg>
+</template>
+</helmet>
+
+<!-- Texture overlay -->
+<div style="position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.05;mix-blend-mode:multiply;background-image:url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+<div style="position:relative;overflow-x:hidden">
+
+  <!-- Cursor glow -->
+  <div id="glow" aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity 1s ease;mix-blend-mode:multiply;background:radial-gradient(340px 340px at var(--mx,50%) var(--my,50%),rgba(176,130,79,0.13),transparent 70%);"></div>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,5vw,64px);background:rgba(239,233,221,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,61,36,0.12);">
+    <a href="#top" style="display:inline-flex;align-items:center;">
+      <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098542/wafd-reserve/logo-linear-green.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(16px,3vw,38px);">
+      <a href="#experience" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Experience</a>
+      <a href="#intelligence" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Wealth Intelligence</a>
+      <a href="#banker" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Your Banker</a>
+      <a href="#rooms" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Reserve Rooms</a>
+      <a href="#card" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Card</a>
+    </div>
+    <a href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;" style-hover="background:var(--bronze);">Request a private introduction</a>
+  </nav>
+
+  <span id="top"></span>
+
+  <!-- ═══════════════════ 01 · HERO ═══════════════════ -->
+  <section style="animation:heroIn .85s cubic-bezier(.2,.7,.2,1) both;background:var(--bone);position:relative;overflow:hidden;min-height:calc(100vh - 64px);display:flex;align-items:center;">
+    <!-- Background image -->
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:url('https://res.cloudinary.com/duio2kdnj/image/upload/v1784098545/wafd-reserve/background-wafd.png') center/cover no-repeat;"></div>
+    <!-- Bronze glow behind device -->
+    <div aria-hidden="true" style="position:absolute;z-index:1;right:0;bottom:0;width:clamp(400px,50vw,720px);height:clamp(400px,50vw,720px);background:radial-gradient(50% 50% at 50% 60%,rgba(176,130,79,0.14),transparent 70%);"></div>
+    <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098554/wafd-reserve/phone-dashboard-transparent.png" alt="WaFd Reserve mobile app showing a client's total relationship balance and accounts" style="position:absolute;z-index:2;right:max(-64px,-4vw);bottom:4%;width:clamp(280px,38vw,540px);filter:drop-shadow(0 60px 80px rgba(0,0,0,0.35));">
+    <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;padding:clamp(72px,10vh,120px) clamp(20px,5vw,64px);">
+      <div style="max-width:72%;min-width:min(100%,520px);">
+        <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:clamp(30px,4.5vh,46px);">
+          <span style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Private banking by WaFd Bank</span>
+        </div>
+        <h1 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(52px,7.4vw,104px);line-height:0.98;letter-spacing:-0.02em;color:var(--pine);margin:0;">Your bank should already know the whole relationship.</h1>
+        <div style="margin-top:clamp(32px,5vh,48px);">
+          <a href="#request" style="display:inline-block;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:16px 34px;border-radius:2px;" style-hover="background:var(--bronze);color:var(--bone);">Request a private introduction</a>
+          <div style="margin-top:26px;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,31,28,0.45);">Member FDIC · WaFd Bank, established 1917</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 02 · WHO IT IS FOR ═══════════════════ -->
+  <section style="background:linear-gradient(180deg,#0F3022 0%,#0B2619 100%);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:30px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(239,233,221,0.72);">Who it is for</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,72px);line-height:1.02;letter-spacing:-0.015em;color:#EFE9DD;margin:0;max-width:26ch;text-wrap:balance;">Built for people whose financial lives have outgrown ordinary banking.</h2>
+      <p data-reveal="" data-delay="120" style="margin:30px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:rgba(239,233,221,0.72);">Business owners, executives, professionals and families managing more complexity, more opportunity and more responsibility across their personal and business finances.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:clamp(50px,7vh,90px);border-top:1px solid rgba(239,233,221,0.16);">
+        <div data-reveal="" style="padding:34px 30px 34px 0;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(26px,2.8vw,36px);color:#EFE9DD;display:block;margin-bottom:14px;">Business owners</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(239,233,221,0.72);">One relationship across the company, the household and what comes after the business.</p>
+        </div>
+        <div data-reveal="" data-delay="100" style="padding:34px 30px;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(26px,2.8vw,36px);color:#EFE9DD;display:block;margin-bottom:14px;">Executives and professionals</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(239,233,221,0.72);">Banking that respects limited time and handles complexity without unnecessary friction.</p>
+        </div>
+        <div data-reveal="" data-delay="200" style="padding:34px 0 34px 30px;">
+          <span style="font-family:'Cormorant',serif;font-size:clamp(26px,2.8vw,36px);color:#EFE9DD;display:block;margin-bottom:14px;">Families and future generations</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(239,233,221,0.72);">Coordinated support for liquidity, lending, wealth and the decisions that shape what comes next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 03 · THE RELATIONSHIP PATHWAY (hidden) ═══════════════════ -->
+  <section id="tier" style="display:none;background:var(--bone);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The relationship pathway</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:22ch;text-wrap:balance;">A new private-banking tier, built on more than a century of trust.</h2>
+      <p data-reveal="" data-delay="120" style="margin:28px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">Reserve elevates qualified WaFd relationships beyond Select Banking with a dedicated banker, a differentiated digital experience and a direct path to WaFd Wealth. New in experience. Established in trust.</p>
+
+      <!-- Progression line -->
+      <div aria-hidden="true" data-reveal="" data-delay="200" style="max-width:100%;height:1px;background:linear-gradient(90deg,var(--bronze) 0%,rgba(176,130,79,0.3) 100%);margin-top:clamp(50px,7vh,90px);margin-bottom:-1px;"></div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;">
+        <div data-reveal="" style="padding:34px 34px 34px 0;border-top:1px solid rgba(11,61,36,0.24);">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;">Select Banking</span>
+          <span style="display:block;font-family:'Cormorant',serif;font-size:22px;color:var(--pine);margin:14px 0 10px;">Build the relationship</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Everyday banking designed to recognize and reward the relationship you have built with WaFd.</p>
+        </div>
+        <div data-reveal="" data-delay="120" style="padding:clamp(34px,4vh,44px) 34px;border-top:2px solid var(--pine);background:var(--bone-2);position:relative;">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--pine);font-weight:700;">WaFd Reserve</span>
+          <span style="position:absolute;top:12px;right:16px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--bronze);font-weight:600;">Invitation-based</span>
+          <span style="display:block;font-family:'Cormorant',serif;font-size:22px;color:var(--pine);margin:14px 0 10px;">Elevate your experience</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">One dedicated Reserve banker, a connected view of your financial life, premium service and access to private Reserve spaces.</p>
+        </div>
+        <div data-reveal="" data-delay="240" style="padding:34px 0 34px 34px;border-top:1px solid rgba(11,61,36,0.24);">
+          <span style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;">WaFd Wealth</span>
+          <span style="display:block;font-family:'Cormorant',serif;font-size:22px;color:var(--pine);margin:14px 0 10px;">Plan what comes next</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Connect with WaFd Wealth for personalized guidance, with your Reserve banker helping coordinate the relationship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 04 · THE RESERVE EXPERIENCE ═══════════════════ -->
+  <section id="experience" style="background:var(--linen);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The Reserve experience</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">Private banking, built around the whole relationship.</h2>
+      <p data-reveal="" data-delay="120" style="margin:28px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">Reserve brings your personal banking, business banking, liquidity and wealth relationships into one elevated experience. You see the complete picture, while your Reserve banker stays informed and ready to help.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,2.5vw,32px);margin-top:clamp(50px,7vh,90px);">
+        <!-- Card 1 -->
+        <div data-reveal="" style="background:var(--bone);padding:clamp(32px,4vw,48px);border-top:2px solid var(--bronze);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:16px;">Relationship</span>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">One complete relationship</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Personal, business, lending and external balances brought together in one clear view.</p>
+        </div>
+        <!-- Card 2 -->
+        <div data-reveal="" data-delay="100" style="background:var(--bone);padding:clamp(32px,4vw,48px);border-top:2px solid var(--bronze);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:16px;">Liquidity</span>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">Liquidity that works harder</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Insured cash sweep options and active liquidity management for clients holding significant operating or personal cash.</p>
+        </div>
+        <!-- Card 3 -->
+        <div data-reveal="" data-delay="200" style="background:var(--bone);padding:clamp(32px,4vw,48px);border-top:2px solid var(--bronze);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:16px;">Intelligence</span>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">Guidance before you have to ask</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Timely insights help you and your Reserve banker recognize liquidity changes, cash-flow needs and opportunities to act sooner.</p>
+        </div>
+        <!-- Card 4 -->
+        <div data-reveal="" data-delay="300" style="background:var(--bone);padding:clamp(32px,4vw,48px);border-top:2px solid var(--bronze);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:16px;">Wealth</span>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">A direct path to advice</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">When the time is right, your Reserve banker can connect you with WaFd Wealth and stay involved as the relationship grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 05 · ONE CONNECTED VIEW ═══════════════════ -->
+  <section id="platform" style="background:var(--bone);">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">One connected view</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--pine);margin:0;text-wrap:balance;">Your financial life, held together.</h2>
+      <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--ink);">Your personal deposits, business accounts, lending, available credit and connected external relationships, brought into one clear experience. You understand where you stand, and your Reserve banker sees the same complete picture.</p>
+
+      <div style="display:grid;grid-template-columns:0.82fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
+        <div data-reveal="" style="position:relative;">
+          <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098561/wafd-reserve/phone-dashboard.png" alt="WaFd Reserve mobile app showing the total relationship balance and account summary" style="width:100%;max-width:400px;border-radius:24px;box-shadow:0 54px 100px -38px rgba(33, 27, 6, 0);">
+        </div>
+
+        <div data-reveal="" data-delay="120">
+          <div style="margin-bottom:clamp(24px,3vh,36px);">
+            <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Total relationship balance</span>
+            <div class="num" style="font-weight:500;font-size:clamp(40px,4.4vw,60px);line-height:0.98;color:var(--pine);margin-top:8px;letter-spacing:-0.01em;">$2,480,500</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.5vw,32px) clamp(24px,3vw,44px);">
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Personal deposits</span><div class="num" style="font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1;color:var(--pine);margin-top:6px;">$982,200</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Business deposits</span><div class="num" style="font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1;color:var(--pine);margin-top:6px;">$1,000,000</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Lending</span><div class="num" style="font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1;color:var(--pine);margin-top:6px;">$542,300</div></div>
+            <div><span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;">Available credit</span><div class="num" style="font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1;color:var(--pine);margin-top:6px;">$357,700</div></div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:16px;margin:clamp(28px,3.5vh,40px) 0;">
+            <span style="flex:1;height:1px;background:var(--bronze);opacity:0.55;"></span>
+            <span style="display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--pine);font-weight:600;flex:none;"><span style="width:8px;height:8px;border-radius:50%;background:#2f8f5b;box-shadow:0 0 0 3px rgba(47,143,91,0.18);"></span>Updated in real time</span>
+          </div>
+
+          <div style="border-top:1px solid rgba(11,61,36,0.2);">
+            <div style="padding:24px 0;border-bottom:1px solid rgba(11,61,36,0.12);">
+              <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);display:block;margin-bottom:8px;">One connected experience</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Your accounts, activity and relationship information come together in one modern WaFd Reserve experience.</p>
+            </div>
+            <div style="padding:24px 0;">
+              <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);display:block;margin-bottom:8px;">Current when it matters</span>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Real-time activity and alerts help you and your Reserve banker respond to meaningful changes sooner.</p>
+            </div>
+          </div>
+          <p style="margin:clamp(24px,3vh,36px) 0 0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,31,28,0.45);">Member FDIC · WaFd Bank, established 1917</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 11 · THE RESERVE CARD ═══════════════════ -->
+  <section id="card" style="background:var(--linen);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">The Reserve Card</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">A card designed to feel as distinctive as the relationship.</h2>
+      <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:56ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">A personalized metal card with fine botanical line artwork etched into the surface. Every season, we partner with a local Pacific Northwest artist to reimagine it.</p>
+
+      <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:clamp(50px,8vh,88px);">
+        <div data-reveal="" style="position:relative;width:100%;aspect-ratio:3/2;border-radius:12px;overflow:hidden;box-shadow:0 40px 78px -34px rgba(11,61,36,0);border:1px solid rgba(11,61,36,0.1);background:var(--bone-2);">
+          <img id="lc0" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098556/wafd-reserve/card-inkgreen.png" alt="The Reserve Card, Estuary edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:1;">
+          <img id="lc1" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" alt="The Reserve Card, Sword Fern edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+          <img id="lc2" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098584/wafd-reserve/card-wildflowers.png" alt="The Reserve Card, Wildflower edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+          <img id="lc3" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098580/wafd-reserve/card-ink.png" alt="The Reserve Card, Tideline edition" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s ease;opacity:0;">
+        </div>
+        <div data-reveal="" data-delay="120">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(10px,1.4vw,16px);margin-bottom:clamp(20px,3vh,28px);">
+            <button id="th0" onClick="{{ go0 }}" aria-label="View the Estuary card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:2px solid var(--bronze);opacity:1;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098556/wafd-reserve/card-inkgreen.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th1" onClick="{{ go1 }}" aria-label="View the Sword Fern card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th2" onClick="{{ go2 }}" aria-label="View the Wildflower card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098584/wafd-reserve/card-wildflowers.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+            <button id="th3" onClick="{{ go3 }}" aria-label="View the Tideline card design" style="width:100%;aspect-ratio:3/2;border-radius:8px;overflow:hidden;cursor:pointer;padding:0;background:var(--bone-2);border:1px solid rgba(11,61,36,0.16);opacity:0.62;transition:opacity .3s ease,border-color .3s ease;">
+              <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098580/wafd-reserve/card-ink.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </button>
+          </div>
+          <div style="padding-top:18px;border-top:1px solid rgba(11,61,36,0.14);">
+            <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);line-height:1;">{{ cap.motif }}</span>
+            <span style="display:block;margin-top:6px;font-size:12px;letter-spacing:0.02em;color:rgba(36,31,28,0.6);">{{ cap.artist }}</span>
+          </div>
+          <p style="margin:20px 0 0;font-size:14px;line-height:1.6;color:rgba(36,31,28,0.55);">Created in collaboration with artists from across the Pacific Northwest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 06 · WEALTH INTELLIGENCE ═══════════════════ -->
+  <section id="intelligence" style="background:linear-gradient(180deg,#0F3022 0%,#0B2619 100%);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Wealth Intelligence</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:#EFE9DD;margin:0;text-wrap:balance;">See what changed. Know what to do next.</h2>
+      <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:rgba(239,233,221,0.72);">Reserve turns your banking activity into a timely view of your financial position, liquidity and emerging needs. You receive clear guidance, while your Reserve banker sees the same signals and can help you act sooner.</p>
+
+      <!-- Split panels -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(50px,8vh,88px);">
+
+        <!-- Client side -->
+        <div data-reveal="" style="background:#EFE9DD;border-radius:12px;padding:clamp(32px,4vw,48px);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:24px;">Client view · Wealth Intelligence</span>
+          <div class="num" style="font-size:clamp(64px,8vw,96px);font-weight:500;color:var(--pine);line-height:0.9;margin-bottom:16px;">82</div>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(22px,2.4vw,28px);color:var(--pine);display:block;line-height:1.15;margin-bottom:20px;">Your financial position is strong</span>
+          <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Liquidity improved this month, while upcoming tax and business obligations may require additional planning.</p>
+          <div style="border-top:1px solid rgba(11,61,36,0.14);padding-top:20px;">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;margin-bottom:12px;">What changed</span>
+            <ul style="margin:0;padding:0 0 0 18px;font-size:14px;line-height:1.8;color:rgba(36,31,28,0.7);">
+              <li>Cash reserves increased</li>
+              <li>Business inflows accelerated</li>
+              <li>Upcoming tax payment identified</li>
+            </ul>
+          </div>
+          <div style="border-top:1px solid rgba(11,61,36,0.14);padding-top:20px;margin-top:20px;">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;margin-bottom:8px;">Recommended next step</span>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:var(--ink);">Review excess liquidity and upcoming obligations with your Reserve banker.</p>
+          </div>
+        </div>
+
+        <!-- Banker side -->
+        <div data-reveal="" data-delay="150" style="background:rgba(239,233,221,0.08);border:1px solid rgba(239,233,221,0.12);border-radius:12px;padding:clamp(32px,4vw,48px);position:relative;">
+          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:24px;">What your Reserve banker sees</span>
+          <span style="font-family:'Cormorant',serif;font-size:clamp(22px,2.4vw,28px);color:#EFE9DD;display:block;line-height:1.15;margin-bottom:20px;">Liquidity event detected</span>
+          <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:rgba(239,233,221,0.72);">A significant increase in personal and business cash balances may create a liquidity-management or wealth-introduction opportunity.</p>
+          <div style="border-top:1px solid rgba(239,233,221,0.12);padding-top:20px;">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(239,233,221,0.5);font-weight:600;display:block;margin-bottom:14px;">Banker actions</span>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;"></span><span style="font-size:14px;color:rgba(239,233,221,0.85);">Review insured cash sweep options</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;"></span><span style="font-size:14px;color:rgba(239,233,221,0.85);">Plan for upcoming obligations</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;"></span><span style="font-size:14px;color:rgba(239,233,221,0.85);">Explore whether WaFd Wealth may be helpful</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;"></span><span style="font-size:14px;color:rgba(239,233,221,0.85);">Schedule time to discuss next steps</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 08 · LIQUIDITY MANAGEMENT ═══════════════════ -->
+  <section id="liquidity" style="background:var(--bone);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">Liquidity management</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:20ch;text-wrap:balance;">Make liquidity productive without making it complicated.</h2>
+      <p data-reveal="" data-delay="120" style="margin:28px 0 0;max-width:60ch;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:var(--ink);">Reserve helps you organize operating cash, personal reserves and short-term liquidity, with insured cash sweep options and guidance from a banker who understands your full financial picture.</p>
+
+      <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:clamp(50px,8vh,88px);">
+        <!-- Summary panel -->
+        <div data-reveal="" style="background:var(--bone-2);border:1px solid rgba(11,61,36,0.1);border-radius:12px;padding:clamp(32px,4vw,48px);">
+          <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,31,28,0.5);font-weight:600;display:block;margin-bottom:8px;">Available liquidity</span>
+          <div class="num" style="font-size:clamp(40px,4.4vw,56px);font-weight:500;color:var(--pine);line-height:0.95;margin-bottom:28px;">$1,247,600</div>
+
+          <div style="margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:12px;color:rgba(36,31,28,0.6);">Insured sweep allocation</span>
+              <span class="num" style="font-size:14px;color:var(--pine);font-weight:500;">$750,000</span>
+            </div>
+            <!-- Restrained bar -->
+            <div style="height:6px;border-radius:3px;background:rgba(11,61,36,0.08);overflow:hidden;">
+              <div style="height:100%;width:60%;background:var(--pine);border-radius:3px;"></div>
+            </div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:12px;color:rgba(36,31,28,0.6);">Upcoming obligations</span>
+              <span class="num" style="font-size:14px;color:var(--pine);font-weight:500;">$285,000</span>
+            </div>
+            <div style="height:6px;border-radius:3px;background:rgba(11,61,36,0.08);overflow:hidden;">
+              <div style="height:100%;width:23%;background:var(--bronze);border-radius:3px;"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:rgba(36,31,28,0.6);">Excess liquidity identified</span>
+              <span class="num" style="font-size:14px;color:var(--bronze);font-weight:500;">$212,600</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supporting modules -->
+        <div data-reveal="" data-delay="120">
+          <div style="padding:28px 0;border-bottom:1px solid rgba(11,61,36,0.12);">
+            <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);display:block;margin-bottom:8px;">Available liquidity</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">A clear view of cash available across personal and business relationships.</p>
+          </div>
+        
+          <div style="padding:28px 0;border-bottom:1px solid rgba(11,61,36,0.12);">
+            <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);display:block;margin-bottom:8px;">Upcoming obligations</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Visibility into expected taxes, business needs and major scheduled outflows.</p>
+          </div>
+          <div style="padding:28px 0;">
+            <span style="font-family:'Cormorant',serif;font-size:22px;color:var(--pine);display:block;margin-bottom:8px;">Personal guidance</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Talk through liquidity, lending and longer-term wealth needs with a banker who understands how they connect.</p>
+          </div>
+          <a href="#request" style="display:inline-block;margin-top:clamp(24px,3vh,36px);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:14px 28px;border-radius:2px;" style-hover="background:var(--bronze);">Review liquidity with your Reserve banker</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 07 · YOUR RESERVE BANKER ═══════════════════ -->
+  <section id="banker" style="background:var(--linen);">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(94px,14vh,180px) clamp(20px,5vw,64px) 0;">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">Your Reserve banker</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--pine);margin:0;text-wrap:balance;">They see exactly what you see.</h2>
+      <p data-reveal="" data-delay="120" style="margin:26px 0 0;max-width:64ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--ink);">Your Reserve banker sees the same complete picture, along with the changes and opportunities that need attention. No re-explaining. No procedural handoffs. Just informed action from someone who knows the relationship.</p>
+    </div>
+
+    <figure data-reveal="" data-delay="120" style="max-width:1440px;margin:clamp(50px,8vh,90px) auto 0;padding:0 clamp(20px,4vw,52px);">
+      <div style="border-radius:14px;overflow:hidden;box-shadow:0 70px 130px -46px rgba(11,61,36,0);border:1px solid rgba(11,61,36,0.12);">
+        <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098576/wafd-reserve/wafd-rm.png" alt="WaFd Reserve banker desktop view showing a client's full relationship: deposits, lending, activity and relationship summary" style="width:100%;display:block;">
+      </div>
+    </figure>
+
+    <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(48px,7vh,72px);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;margin-top:clamp(50px,7vh,84px);border-top:1px solid rgba(11,61,36,0.2);">
+        <div data-reveal="" style="padding:34px 32px 34px 0;">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">One complete view</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Your personal banking, business banking, lending and service activity brought together in one place.</p>
+        </div>
+        <div data-reveal="" data-delay="100" style="padding:34px 32px;border-left:1px solid rgba(11,61,36,0.14);">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">The right signal</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Important liquidity changes and upcoming needs surfaced before you have to ask.</p>
+        </div>
+        <div data-reveal="" data-delay="200" style="padding:34px 0 34px 32px;border-left:1px solid rgba(11,61,36,0.14);">
+          <span style="font-family:'Cormorant',serif;font-size:26px;color:var(--pine);display:block;margin-bottom:12px;">Clear follow-through</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Your requests, next steps and introductions stay coordinated until they are complete.</p>
+        </div>
+      </div>
+
+      <blockquote data-reveal="" style="margin:clamp(56px,8vh,100px) 0 clamp(24px,3vh,36px);text-align:center;">
+        <p style="font-family:'Cormorant',serif;font-weight:500;font-style:italic;font-size:clamp(20px,2.8vw,38px);line-height:1.12;color:var(--pine);margin:0;">"The person who answers already knows the whole picture."</p>
+      </blockquote>
+      <p data-reveal="" style="margin:0 auto;max-width:60ch;text-align:center;font-size:14px;line-height:1.65;color:rgba(36,31,28,0.6);">When banking becomes a wealth conversation, your Reserve banker can connect you to WaFd Wealth with the relevant context already in place.</p>
+
+      <!-- Workflow row -->
+      <div data-reveal="" style="margin-top:clamp(40px,6vh,64px);padding-top:28px;border-top:1px solid var(--bronze);display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);flex-wrap:wrap;">
+        <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--pine);font-weight:600;">A timely insight</span>
+        <span style="color:var(--bronze);">→</span>
+        <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--pine);font-weight:600;">A conversation with your banker</span>
+        <span style="color:var(--bronze);">→</span>
+        <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--pine);font-weight:600;">The right specialist, when needed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 09 · RESERVE ROOMS ═══════════════════ -->
+  <section id="rooms" style="background:var(--pine);position:relative;overflow:hidden;">
+    <!-- Architectural ambience background -->
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,48,34,0.95) 0%,rgba(11,38,25,0.85) 50%,rgba(15,48,34,0.9) 100%);z-index:1;"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;opacity:0.15;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(176,130,79,0.3),transparent 60%);"></div>
+
+    <div style="position:relative;z-index:2;max-width:100%;margin:0 auto;padding:clamp(100px,15vh,200px) 50px clamp(100px,15vh,200px) clamp(20px,5vw,64px);">
+      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(40px,6vw,80px);align-items:center;max-width:1600px;margin:0 auto;">
+        <div style="max-width:56ch;">
+          <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+            
+            <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Reserve Rooms</span>
+          </div>
+          <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,4.8vw,64px);line-height:1.0;letter-spacing:-0.015em;color:#EFE9DD;margin:0;">A private place for the conversations that matter.</h2>
+          <p data-reveal="" data-delay="120" style="margin:26px 0 0;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:rgba(239,233,221,0.72);">A private, appointment-based setting for important financial conversations, from business growth and liquidity planning to family wealth and major transitions.</p>
+
+          <div style="margin-top:clamp(40px,6vh,64px);display:flex;flex-direction:column;gap:20px;">
+            <div data-reveal="" style="display:flex;gap:14px;align-items:flex-start;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;margin-top:8px;"></span>
+              <div>
+                <span style="font-size:14px;font-weight:600;color:#EFE9DD;display:block;margin-bottom:4px;">Designed for privacy</span>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(239,233,221,0.65);">Quiet, considered spaces for conversations that do not belong across a teller line.</p>
+              </div>
+            </div>
+            <div data-reveal="" data-delay="100" style="display:flex;gap:14px;align-items:flex-start;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;margin-top:8px;"></span>
+              <div>
+                <span style="font-size:14px;font-weight:600;color:#EFE9DD;display:block;margin-bottom:4px;">Connected to the relationship</span>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(239,233,221,0.65);">Your banker arrives with the full picture already in view.</p>
+              </div>
+            </div>
+            <div data-reveal="" data-delay="200" style="display:flex;gap:14px;align-items:flex-start;">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--bronze);flex:none;margin-top:8px;"></span>
+              <div>
+                <span style="font-size:14px;font-weight:600;color:#EFE9DD;display:block;margin-bottom:4px;">Built for important moments</span>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(239,233,221,0.65);">Business transitions, liquidity decisions, lending needs and conversations with WaFd Wealth.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#request" data-reveal="" style="display:inline-block;margin-top:clamp(32px,5vh,48px);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--pine);background:var(--bone);padding:16px 32px;border-radius:2px;" style-hover="background:var(--bronze);color:var(--bone);">Reserve a private meeting</a>
+        </div>
+
+        <div data-reveal="" data-delay="150" style="position:relative;">
+          <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098591/wafd-reserve/wafd-arrival.png" alt="WaFd Reserve private arrival experience" style="width:100%;border-radius:12px;box-shadow:0 54px 100px -38px rgba(0,0,0,0);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 10 · ACCESS ═══════════════════ -->
+  <section id="access" style="background:var(--bone);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,13vh,168px) clamp(20px,5vw,64px);">
+      <div data-reveal="" style="display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:rgba(36,31,28,0.5);">Private from the first conversation</span>
+      </div>
+      <h2 data-reveal="" style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(38px,5.2vw,68px);line-height:1.04;letter-spacing:-0.015em;color:var(--pine);margin:0;max-width:16ch;text-wrap:balance;">By invitation, then built around you.</h2>
+
+      <!-- Four-step journey with connecting line -->
+      <div style="position:relative;margin-top:clamp(50px,7vh,90px);">
+        <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--bronze);opacity:0.4;"></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;">
+          <div data-reveal="" style="padding:36px 28px 36px 0;border-top:2px solid var(--pine);">
+            <span class="num" style="font-size:clamp(40px,4.5vw,56px);color:var(--bronze);line-height:1;display:block;">01</span>
+            <span style="display:block;margin:18px 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Invitation</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">Qualifying WaFd clients are personally invited to experience Reserve.</p>
+          </div>
+          <div data-reveal="" data-delay="100" style="padding:36px 28px;border-top:2px solid var(--pine);">
+            <span class="num" style="font-size:clamp(40px,4.5vw,56px);color:var(--bronze);line-height:1;display:block;">02</span>
+            <span style="display:block;margin:18px 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Personal introduction</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">You meet the Reserve banker who will serve as your primary point of contact.</p>
+          </div>
+          <div data-reveal="" data-delay="200" style="padding:36px 28px;border-top:2px solid var(--pine);">
+            <span class="num" style="font-size:clamp(40px,4.5vw,56px);color:var(--bronze);line-height:1;display:block;">03</span>
+            <span style="display:block;margin:18px 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">A connected view</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">Your personal, business and connected external relationships are brought together in one clear experience.</p>
+          </div>
+          <div data-reveal="" data-delay="300" style="padding:36px 0 36px 28px;border-top:2px solid var(--pine);">
+            <span class="num" style="font-size:clamp(40px,4.5vw,56px);color:var(--bronze);line-height:1;display:block;">04</span>
+            <span style="display:block;margin:18px 0 10px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--pine);">Ongoing guidance</span>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:var(--ink);">Reserve helps you understand what changed, what may need attention and what to consider next.</p>
+          </div>
+        </div>
+      </div>
+      <p data-reveal="" style="margin:40px 0 0;font-size:13px;letter-spacing:0.04em;color:rgba(36,31,28,0.55);max-width:60ch;">Reserve is available by invitation to qualifying WaFd clients.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 12 · FOOTER ═══════════════════ -->
+  <footer id="request" style="background:linear-gradient(180deg,var(--pine) 0%,var(--pine-2) 100%);color:var(--bone);border-top:1px solid rgba(239,233,221,0.14);">
+    <div style="max-width:1220px;margin:0 auto;padding:clamp(90px,14vh,180px) clamp(20px,5vw,64px) clamp(48px,7vh,80px);">
+      <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:30px;">
+        <span style="font-size:12px;letter-spacing:0.24em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Private banking, made personal again</span>
+      </div>
+      <h2 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.0;letter-spacing:-0.015em;color:var(--bone);margin:0;max-width:18ch;text-wrap:balance;">One relationship. One banker. One connected platform.</h2>
+      <p style="margin:26px 0 0;max-width:56ch;font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:rgba(239,233,221,0.72);">WaFd Reserve brings your personal banking, business banking, liquidity and wealth relationships together in one elevated experience, delivered personally by WaFd.</p>
+      <div style="display:flex;align-items:center;gap:26px;margin-top:44px;flex-wrap:wrap;">
+        <a href="#top" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--pine);background:var(--bone);padding:16px 32px;border-radius:2px;" style-hover="background:var(--bronze);color:var(--bone);">Request a private introduction</a>
+        <a href="#top" style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(239,233,221,0.7);border-bottom:1px solid rgba(239,233,221,0.3);padding-bottom:2px;" style-hover="color:var(--bronze);">Speak with a Reserve banker</a>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:clamp(70px,11vh,140px);padding-top:32px;border-top:1px solid rgba(239,233,221,0.16);">
+        <span style="display:inline-flex;align-items:center;">
+          <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098573/wafd-reserve/logo-linear-light.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
+        </span>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <a href="#experience" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Experience</a>
+          <a href="#intelligence" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Wealth Intelligence</a>
+          <a href="#banker" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Your Banker</a>
+          <a href="#rooms" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Reserve Rooms</a>
+          <a href="#card" style="color:rgba(239,233,221,0.72);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">The Card</a>
+        </div>
+      </div>
+      <p style="margin:26px 0 0;font-size:11px;letter-spacing:0.08em;color:rgba(239,233,221,0.5);">WaFd Reserve · Private banking by WaFd Bank · Member FDIC · Established 1917</p>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#B0824F&quot;, &quot;options&quot;: [&quot;#B0824F&quot;, &quot;#0F3022&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;}
+}">
+class Component extends DCLogic {
+  state = { slide: 0 };
+
+  _res(id, path) { const R = (typeof window !== 'undefined' && window.__resources) || {}; return R[id] || path; }
+  get _cards() {
+    return [
+      { src: this._res('cardGreen', 'https://res.cloudinary.com/duio2kdnj/image/upload/v1784098556/wafd-reserve/card-inkgreen.png'), motif: 'Estuary', artist: 'Maren Holt · Ink on green · Tacoma' },
+      { src: this._res('cardBot',   'https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png'), motif: 'Sword Fern', artist: 'Eli Brandt · Botanical line study · Olympia' },
+      { src: this._res('cardWild',  'https://res.cloudinary.com/duio2kdnj/image/upload/v1784098584/wafd-reserve/card-wildflowers.png'), motif: 'Wildflower', artist: 'Clara Whitfield · Pressed-flower etching · Portland' },
+      { src: this._res('cardInk',   'https://res.cloudinary.com/duio2kdnj/image/upload/v1784098580/wafd-reserve/card-ink.png'), motif: 'Tideline', artist: 'Jun Park · Sumi ink · Seattle' },
+    ];
+  }
+  _paused = false;
+
+  componentDidMount() {
+    if (this.props.accent) document.documentElement.style.setProperty('--bronze', this.props.accent);
+    this._initReveal();
+    this._initSpace();
+    this._applyCards();
+    this._timer = setInterval(() => {
+      if (!this._paused) this.setState(s => ({ slide: (s.slide + 1) % this._cards.length }));
+    }, 4200);
+  }
+
+  componentWillUnmount() { clearInterval(this._timer); clearTimeout(this._resume); }
+
+  componentDidUpdate(prev) {
+    if (prev.accent !== this.props.accent && this.props.accent) {
+      document.documentElement.style.setProperty('--bronze', this.props.accent);
+    }
+    this._applyCards();
+  }
+
+  _pick(i){ this.setState({ slide: i }); this._paused = true; clearTimeout(this._resume); this._resume = setTimeout(()=>{ this._paused = false; }, 9000); }
+
+  _applyCards() { const n = this._cards.length; for (let i=0;i<n;i++){ const el=document.getElementById('lc'+i); if(el) el.style.opacity=(i===this.state.slide)?'1':'0'; const th=document.getElementById('th'+i); if(th){ const on=i===this.state.slide; th.style.border=on?'2px solid var(--bronze)':'1px solid rgba(11,61,36,0.16)'; th.style.opacity=on?'1':'0.62'; } } }
+
+  _initSpace() {
+    const glow = document.getElementById('glow');
+    if (glow && window.matchMedia && window.matchMedia('(pointer:fine)').matches) {
+      let raf = 0, mx = 50, my = 50;
+      window.addEventListener('mousemove', (e) => {
+        mx = (e.clientX / window.innerWidth) * 100; my = (e.clientY / window.innerHeight) * 100;
+        if (!raf) raf = requestAnimationFrame(() => { glow.style.setProperty('--mx', mx + '%'); glow.style.setProperty('--my', my + '%'); glow.style.opacity = '1'; raf = 0; });
+      }, { passive: true });
+    }
+  }
+
+  _initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    const els = [...document.querySelectorAll('[data-reveal]')];
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1)';
+    });
+    const io = new IntersectionObserver((ents) => {
+      ents.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+        el.style.transitionDelay = (d / 1000) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  }
+
+  renderVals() {
+    const idx = this.state.slide;
+    const cards = this._cards;
+    return {
+      cap: cards[idx],
+      go0: () => this._pick(0),
+      go1: () => this._pick(1),
+      go2: () => this._pick(2),
+      go3: () => this._pick(3),
+    };
+  }
+}
+</script>
+</body>
+</html>
