@@ -27,6 +27,10 @@
   img{max-width:100%;display:block}
   .num{font-family:'Cormorant',serif;font-feature-settings:"lnum" 1,"tnum" 1;}
   @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @media(max-width:900px){
+    .hero-phone{display:none!important;}
+    .hero-text{max-width:100%!important;min-width:0!important;}
+  }
 </style>
 <meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098577/wafd-reserve/card-botanical.png" data-resource-id="cardBot">
 <meta name="ext-resource-dependency" content="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098584/wafd-reserve/card-wildflowers.png" data-resource-id="cardWild">
@@ -50,18 +54,18 @@
   <div id="glow" aria-hidden="true" style="position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity 1s ease;mix-blend-mode:multiply;background:radial-gradient(340px 340px at var(--mx,50%) var(--my,50%),rgba(176,130,79,0.13),transparent 70%);"></div>
 
   <!-- ═══════════════════ NAV ═══════════════════ -->
-  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,5vw,64px);background:rgba(239,233,221,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,61,36,0.12);">
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,5vw,64px);background:transparent;border-bottom:none;">
     <a href="#top" style="display:inline-flex;align-items:center;">
       <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098542/wafd-reserve/logo-linear-green.png" alt="WaFd Reserve" style="height:36px;width:auto;object-fit:contain;">
     </a>
     <div style="display:flex;align-items:center;gap:clamp(16px,3vw,38px);">
       <a href="#experience" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Experience</a>
+            <a href="#card" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;"> Card</a>
       <a href="#intelligence" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Wealth Intelligence</a>
       <a href="#banker" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Your Banker</a>
       <a href="#rooms" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">Reserve Rooms</a>
-      <a href="#card" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;">The Card</a>
     </div>
-    <a href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;white-space:nowrap;" style-hover="background:var(--bronze);">Request an Introduction</a>
+    <a href="#request" style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:12px 22px;border-radius:2px;white-space:nowrap;" style-hover="background:var(--bronze);">Request Introduction</a>
   </nav>
 
   <span id="top"></span>
@@ -72,13 +76,14 @@
     <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:url('https://res.cloudinary.com/duio2kdnj/image/upload/v1784098545/wafd-reserve/background-wafd.png') center/cover no-repeat;"></div>
     <!-- Bronze glow behind device -->
     <div aria-hidden="true" style="position:absolute;z-index:1;right:0;bottom:0;width:clamp(400px,50vw,720px);height:clamp(400px,50vw,720px);background:radial-gradient(50% 50% at 50% 60%,rgba(176,130,79,0.14),transparent 70%);"></div>
-    <img src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098554/wafd-reserve/phone-dashboard-transparent.png" alt="WaFd Reserve mobile app showing a client's total relationship balance and accounts" style="position:absolute;z-index:2;right:max(-64px,-4vw);bottom:4%;width:clamp(280px,38vw,540px);filter:drop-shadow(0 60px 80px rgba(0,0,0,0.35));">
+    <img class="hero-phone" src="https://res.cloudinary.com/duio2kdnj/image/upload/v1784098554/wafd-reserve/phone-dashboard-transparent.png" alt="WaFd Reserve mobile app showing a client's total relationship balance and accounts" style="position:absolute;z-index:2;right:8vw;bottom:4%;width:clamp(280px,32vw,460px);filter:drop-shadow(0 60px 80px rgba(0,0,0,0.35));">
     <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;width:100%;padding:clamp(72px,10vh,120px) clamp(20px,5vw,64px);">
-      <div style="max-width:72%;min-width:min(100%,520px);">
+      <div class="hero-text" style="max-width:72%;min-width:min(100%,520px);">
         <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:clamp(30px,4.5vh,46px);">
-          <span style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Private banking by WaFd Bank</span>
+          <span style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;font-weight:600;color:var(--bronze);">Reserve banking by WaFd Bank</span>
         </div>
-        <h1 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(52px,7.4vw,104px);line-height:0.98;letter-spacing:-0.02em;color:var(--pine);margin:0;">Your bank should already know the whole relationship.</h1>
+        <h1 style="font-family:'Cormorant',serif;font-weight:500;font-size:clamp(52px,7.4vw,104px);line-height:0.98;letter-spacing:-0.02em;color:var(--pine);margin:0;">Your bank should already know your whole relationship.</h1>
+        <p style="margin:clamp(24px,3vh,36px) 0 0;max-width:48ch;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--ink);">Private banking for business owners, executives, professionals and families building what comes next.</p>
         <div style="margin-top:clamp(32px,5vh,48px);">
           <a href="#request" style="display:inline-block;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--bone);background:var(--pine);padding:16px 34px;border-radius:2px;" style-hover="background:var(--bronze);color:var(--bone);">Request a private introduction</a>
           <div style="margin-top:26px;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,31,28,0.45);">Member FDIC · WaFd Bank, established 1917</div>
@@ -173,12 +178,7 @@
           <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">Guidance before you have to ask</span>
           <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">Timely insights help you and your Reserve banker recognize liquidity changes, cash-flow needs and opportunities to act sooner.</p>
         </div>
-        <!-- Card 4 -->
-        <div data-reveal="" data-delay="300" style="background:var(--bone);padding:clamp(32px,4vw,48px);border-top:2px solid var(--bronze);position:relative;">
-          <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bronze);font-weight:600;display:block;margin-bottom:16px;">Wealth</span>
-          <span style="font-family:'Cormorant',serif;font-size:clamp(24px,2.6vw,32px);color:var(--pine);display:block;line-height:1.1;margin-bottom:14px;">A direct path to advice</span>
-          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(36,31,28,0.7);">When the time is right, your Reserve banker can connect you with WaFd Wealth and stay involved as the relationship grows.</p>
-        </div>
+        
       </div>
     </div>
   </section>
